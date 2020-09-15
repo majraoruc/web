@@ -1,0 +1,316 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/1.3.1/js/toastr.js"></script>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Midterm Makeup Exam</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <div class="jumbotron">
+        <h1>Welcome to Midterm Makeup Exam at course Introduction to Web Programming</h1>
+        <p>This is skeleton project to save you time on exam. You have to populate missing snippet codes to make this project functional </p>
+
+        <h3>Following parts should be completed:</h3>
+
+        <ul>
+          <li>1. Connection to MySQL database in rest/index.php file per TODO instructions in the file</li>
+          <li>2. Create table in MySQL database per TODO instructions in the index.php file</li>
+          <li>3. REST endpoint GET /rest/cars - in rest/index.php file per TODO instructions in the file</li>
+          <li>4. REST endpoint GET /rest/car - in rest/index.php file per TODO instructions in the file</li>
+          <li>5. REST endpoint POST /rest/cars - in rest/index.php file per TODO instructions in the file</li>
+          <li>6. REST endpoint POST /rest/car - in rest/index.php file per TODO instructions in the file</li>
+          <li>7. REST endpoint DELETE /rest/cars/@id - in rest/index.php file per TODO instructions in the file</li>
+          <li>8. jQuery validation for #add_form - from index.html file per TODO intructions in the file</li>
+          <li>9. Ajax Call to GET /rest/cars endpoint from index.html file per TODO intructions in the file</li>
+          <li>10. Ajax Call to GET /rest/car endpoint from index.html file per TODO intructions in the file</li>
+          <li>11. Ajax Call to POST /rest/cars endpoint from index.html file per TODO intructions in the file</li>
+          <li>12. Ajax Call to POST /rest/car endpoint from index.html file per TODO intructions in the file</li>
+          <li>13. Ajax Call to DELETE /rest/cars/@id endpoint from index.html file per TODO intructions in the file</li>
+        </ul>
+      </div>
+
+      <div class="page-header">
+        <h1>Cars <button type="button" class="btn btn-info btn-lg" style="float: right;" data-toggle="modal" data-target="#addModal">Add New Car</button></h1>
+      </div>
+
+      <!-- Add Car Modal -->
+      <div class="modal fade" id="addModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content" id="myModal">
+
+          <form id="add_form" >
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="type">Type:</label>
+                  <input type="text" id="type" name="type" class="form-control"></input>
+                </div>
+                <div>
+                  <label for="model">Model:</label>
+                  <input type="text" id="model" name="model" class="form-control"></input>
+                </div>
+                <div>
+                  <label for="color">Color:</label>
+                  <input type="text"  id="color" name="color" class="form-control"></input>
+                </div>
+                <div>
+                  <label for="number_of_doors">Doors:</label>
+                  <input type="number" id="number_of_doors" name="number_of_doors" class="form-control"></input>
+                </div>
+                <div>
+                  <label for="engine_power">Engine Power:</label>
+                  <input type="text" id="engine_power" name="engine_power" class="form-control"></input>
+                </div>
+                <div>
+                  <label for="production_year">Production Year:</label>
+                  <input type="text" id="production_year" name="production_year" class="form-control"></input>
+                </div>
+              </div>
+              <div class="error"><span></span></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="close_button" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Save</button>
+            </div>
+          </form>
+          </div>
+          </div>
+        </div>
+        <!--End of add car modal-->
+
+        <!-- Add Car Modal -->
+        <div class="modal fade" id="editModal" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" id="myModal">
+            <form id="edit_form" >
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"></h4>
+              </div>
+              <div class="modal-body">
+                  <input type="text" id="id" name="id" class="form-control" hidden></input>
+                  <div class="form-group">
+                    <label for="type">Type:</label>
+                    <input type="text" id="ftype" name="type" class="form-control"></input>
+                  </div>
+                  <div>
+                    <label for="model">Model:</label>
+                    <input type="text" id="fmodel" name="model" class="form-control"></input>
+                  </div>
+                  <div>
+                    <label for="color">Color:</label>
+                    <input type="text"  id="fcolor" name="color" class="form-control"></input>
+                  </div>
+                  <div>
+                    <label for="number_of_doors">Doors:</label>
+                    <input type="number" id="fnumber_of_doors" name="number_of_doors" class="form-control"></input>
+                  </div>
+                  <div>
+                    <label for="engine_power">Engine Power:</label>
+                    <input type="text" id="fengine_power" name="engine_power" class="form-control"></input>
+                  </div>
+                  <div>
+                    <label for="production_year">Production Year:</label>
+                    <input type="text" id="fproduction_year" name="production_year" class="form-control"></input>
+                  </div>
+                </div>
+                <div class="error"><span></span></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="close_button" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Save</button>
+              </div>
+            </form>
+            </div>
+            </div>
+          </div>
+          <!--End of edit car modal-->
+
+      <div class="row">
+        <div class="col-md-12">
+          <table id="cars-table" class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Type</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th># of Doors</th>
+                <th>Engine Power</th>
+                <th>Price</th>
+                <th>Ages</th>
+                <th>Delete</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+
+  <script type="text/javascript">
+  get_cars();
+  function get_cars(){
+    $.get("rest/cars", function(data){
+      var html = '';
+      for(var i = 0; i< data.length; i++){
+        html +='<tr><td>' + data[i].type + '</td>';
+        html +='<td>' + data[i].model + '</td>';
+        html += '<td>' + data[i].color + '</td>';
+        html += '<td>' + data[i].number_of_doors + '</td>';
+        html += '<td>' + data[i].engine_power + '</td>';
+        html += '<td>' + data[i].price + '</td>';
+        html += '<td>' + data[i].age + '</td>';
+        html += '<td><button type="button" class="btn btn-danger" onclick="delete_car('+data[i].id+');">Delete</button></td>';
+        html += '<td><button type="button" class="btn btn-info" onclick="open_edit_modal('+data[i].id+');">Edit</button></td> </tr>';
+
+      }
+      $("#cars-table").html(html);
+    });
+  }
+
+  function delete_car(id){
+    $.ajax({
+      url: 'rest/cars/'+id,
+      method: 'DELETE',
+      success: function(result) {
+          toastr.success('Deleted');
+          get_cars();
+        },
+        error: function(){
+          toastr.success('Not deleted');
+        }
+    });
+  }
+
+  function get_car(id){
+    $.get('rest/cars?id='+id, function(data){ console.log(data);
+      alert('Name: ' + data.name);
+    })
+  }
+
+
+  function open_edit_modal(id){
+    $("#edit_form").modal('toggle');
+    $.get('rest/cars?id='+id, function(data){
+      $("#edit_form input[type=ftype]").val(data.type);
+      $("#edit_form input[model=fmodel]").val(data.model);
+      $("#edit_form input[color=fcolor]").val(data.color);
+      $("#edit_form input[number_of_doors=fnumber_of_doors]").val(data.number_of_doors);
+      $("#edit_form input[engine_power=fengine_power]").val(data.engine_power);
+      $("#edit_form input[name=id]").val(data.id);
+    })
+  }
+
+/*
+
+  $("#add_form").validate({
+   focusCleanup: true,
+   errorElement: "em",
+  rules: {
+    fname: 'required',
+    lname: 'required',
+    psword: {
+      required: true,
+      minlength: 2,
+      maxlength: 10
+    }
+  },
+  messages: {
+    fname: 'This field is required',
+    lname: 'This field is required',
+    user_email: 'Enter a valid email',
+    psword: {
+      minlength: 'Password must be at least 8 characters long'
+    }
+  }
+)}
+*/
+
+      $("#add_form").validate({
+        focusCleanup: true,
+        errorElement: em,
+        rules: {
+          type: 'required',
+          model: {
+            required : true,
+            minlength : 3
+          }
+          color: 'required',
+          number_of_doors :'required',
+          engine_power: 'required',
+          production_year:'required'
+        }
+        submitHandler: function(form, validator) {
+          $.post('rest/cars', $("#add_form").serialize()).done(function(){
+               toastr.success('Car added');
+               $('#addmodal').modal('toggle');
+               get_cars();
+          }).fail(function(){
+            toastr.error('Car not added');
+          });
+        }
+
+      })
+    /** TODO implement jQuery validation for #add_form. All fiels should be required. Model field should be at lest 3 characters long.  //DONE
+    */
+
+    /** TODO implement ajax call to call GET method rest/cars and populate table with id #cars-table
+     * Using JSON data from endpoint populate table's HTML content and transform table into DataTable   //DONE
+       Columns delete and edit should contain buttons to trigger update or delete operations
+     */
+
+     /** TODO implement ajax call to call GET method rest/car and populate edit modal fields when edit button is selected   //DONE
+     */
+
+     /** TODO implement ajax call to call POST method rest/cars and reload table
+     */
+
+     /** TODO implement ajax call to call POST method /rest/car to edit data about selected car. Modal for data update should be
+       populated with current data from database. After data is updated close modal and reload table
+     */
+
+     /** TODO implement ajax call to call DELETE method /rest/cars/@id and reload table  //DONE
+     */
+
+    </script>
+  </body>
+</html>
