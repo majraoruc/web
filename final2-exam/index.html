@@ -1,0 +1,286 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="//code.highcharts.com/highcharts.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Final Makeup Exam</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <div class="jumbotron">
+        <h1>Welcome to Final Makeup Exam at course Introduction to Web Programming</h1>
+        <p>This is skeleton project to save you time on exam. You have to populate missing snippet codes to make this project functional </p>
+        <p>The application should have one login screen and based on user type it should load different interfaces for Manager and Executive. For session management between server side and client side usage of JWT is must. All JWT tokens on the system should have expiry time set to 30 min and once the token expires the user should redirect to the login page. Registration page is not required and users can be entered manually to DB. JWT token should be kept on localStorage on the frontend and used within the HTTP header for every request that requires authentication.</p>
+        <h3>Following parts should be completed:</h3>
+
+        <ul>
+          <li>1. Connection to MySQL database in rest/index.php file per TODO instructions in the file</li>
+          <li>2. REST endpoint POST /rest/login - in rest/index.php file per TODO instructions in the file</li>
+          <li>3. REST endpoint rest/students in rest/index.php file per TODO instructions in the file</li>
+          <li>4. REST endpoint rest/graphs in rest/index.php file per TODO instructions in the file</li>
+          <li>5. Ajax Call to POST /rest/login endpoint from index.html file per TODO intructions in the file</li>
+          <li>6. Ajax Call to rest/students endpoint from index.html file per TODO intructions in the file</li>
+          <li>7. Ajax Call to rest/graphs endpoint from index.html file per TODO intructions in the file</li>
+          <li>8. Log out - from index.html file per TODO intructions in the file</li>
+        </ul>
+      </div>
+
+      <h2 id="message"><button type="button" class="btn btn-info btn-lg" style="float:right;" data-toggle="modal" data-target="#loginModal">Log in</button></h2>
+
+      <!-- Login Modal -->
+      <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content" id="myModal">
+          <form id="login_form" >
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="username">Username:</label>
+                  <input type="text" id="username" name="username" class="form-control"></input>
+                </div>
+                <div>
+                  <label for="model">Password:</label>
+                  <input type="password" id="password" name="password" class="form-control"></input>
+                </div>
+                <div>
+              </div>
+              <div class="error"><span></span></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="close_button" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Login</button>
+            </div>
+          </form>
+          </div>
+          </div>
+        </div>
+      </div>
+        <!--End of Login modal-->
+
+      <div style="display: none;">
+        <div class="page-header">
+          <h1>Students</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table id="students-table" class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Surname</th>
+                  <th>Gender</th>
+                  <th>Class</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: none;">
+        <div class="page-header">
+          <h1>Students Distribution</h1>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Class Distribution</h3>
+              </div>
+              <div class="panel-body">
+                <div id="class-dist-pie"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script>
+     /** TODO implement ajax call to call POST method /rest/login.
+      * If user is logged in successfully display 'Hello username' message instead of 'Please login here'
+      * where username will be username from database (you have to use jQuery)
+      * Hide Login button and display Log out button
+     */
+     function login() {
+        $.ajax({
+          type: "POST",
+          url: api_url + "/rest/login",
+          contentType: 'application/json',
+          data: JSON.stringify({
+            "username": $('#username').val(),
+            "password": $('#password').val()
+          }),
+          contentType: "application/json; charset=utf-8"
+        }).then(data => {
+          if(data.success){
+            localStorage.setItem('jwt_key', data.jwt);
+            document.getElementById('login_button').classList.add('hidden');
+            document.getElementById('logout_button').classList.remove('hidden');
+            $('#loginModal').modal('toggle');
+            alert('Hello ' + data.name);
+          } else {
+            localStorage.removeItem('jwt_key');
+            document.getElementById('login_button').classList.remove('hidden');
+            document.getElementById('logout_button').classList.add('hidden');
+            alert(data.message);
+          }
+        }).catch(error => {
+          alert("ERROR in login. Check developer console.")
+          console.log(error)
+        });
+      }
+
+     /** TODO implement function to logout user
+      * If user is logged out successfully display 'Please login here' message and display login button
+     */
+     function logout(){
+      localStorage.removeItem('jwt_key');
+      document.getElementById('login_button').classList.remove('hidden');
+      document.getElementById('logout_button').classList.add('hidden');
+     }
+
+     /** TODO implement ajax call to call GET method rest/students and populate table with id #students-table if user is manager (table is hidden by default)
+     * Using JSON data from endpoint populate table's HTML content and transform table into DataTable
+     */
+
+     /** TODO implement ajax call to call GET method rest/graphs and using HighCharts library to create
+      *  pie chart in div element with id #class-dist-pie if user is executive (graphs are hidden by default)
+      */
+      get_graphs();
+      function get_graphs(){
+       $.get('rest/graphs', function(data){
+         var classDataSet = [];
+         var executiveDataSet = [];
+         var deathDataSet = [];
+         var recoveryDataSet = [];
+
+         for (var i = 0; i < data.length; i++){
+            deathDataSet.push({
+              name: data[i].class,
+              y: parseFloat(data[i].class_distr)
+            });
+
+            recoveryDataSet.push({
+              name: data[i].continent,
+              y: parseFloat(data[i].executive_distr)
+            });
+         }
+
+         Highcharts.chart('class', {
+              chart: {
+                  plotBackgroundColor: null,
+                  plotBorderWidth: null,
+                  plotShadow: false,
+                  type: 'pie'
+              },
+              title: {
+                  text: 'class'
+              },
+              tooltip: {
+                  pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+              },
+              accessibility: {
+                  point: {
+                      valueSuffix: '%'
+                  }
+              },
+              plotOptions: {
+                  pie: {
+                      allowPointSelect: true,
+                      cursor: 'pointer',
+                      dataLabels: {
+                          enabled: true,
+                          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                      }
+                  }
+              },
+              series: [{
+                  name: 'students',
+                  colorByPoint: true,
+                  data: classDataSet
+              }]
+          });
+
+
+          Highcharts.chart('executive', {
+               chart: {
+                   plotBackgroundColor: null,
+                   plotBorderWidth: null,
+                   plotShadow: false,
+                   type: 'pie'
+               },
+               title: {
+                   text: 'user'
+               },
+               tooltip: {
+                   pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+               },
+               accessibility: {
+                   point: {
+                       valueSuffix: '%'
+                   }
+               },
+               plotOptions: {
+                   pie: {
+                       allowPointSelect: true,
+                       cursor: 'pointer',
+                       dataLabels: {
+                           enabled: true,
+                           format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                       }
+                   }
+               },
+               series: [{
+                   name: 'users',
+                   colorByPoint: true,
+                   data: executiveDataSet
+               }]
+           });
+
+       });
+     }
+
+
+          
+
+    
+     
+
+       
+
+    </script>
+  </body>
+</html>
